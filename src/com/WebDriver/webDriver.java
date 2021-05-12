@@ -5,9 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class webDriver {
 	public WebDriver driver;
-	private String url = "http://localhost/thien/NhomKTPM/index.php";
+	private String url = "http://localhost:81/web2_doan/";
 	private String chromedriver = "webdriver.chrome.driver";
-	private String chrome = "G:\\Git\\KTPM\\libs\\chromedriver.exe";
+	private String chrome = "D:\\student\\chromedriver.exe";
 	
 	public void setWebDriverHome() {
 		System.setProperty(chromedriver, chrome);
@@ -16,28 +16,28 @@ public class webDriver {
 	}
 	
 	public void setWebDriverShop() {
-		url = "http://localhost/thien/NhomKTPM/shop.php";
+		url = "http://localhost:81/web2_doan/shop.php";
 		System.setProperty(chromedriver, chrome);
 		driver = new ChromeDriver();
 		driver.get(url);
 	}
 	
 	public void setWebDriverLogin() {
-		url = "http://localhost/thien/NhomKTPM/login.php";
+		url = "http://localhost:81/web2_doan/login.php";
 		System.setProperty(chromedriver, chrome);
 		driver = new ChromeDriver();
 		driver.get(url);
 	}
 	
 	public void setWebDriverRegister() {
-		url = "http://localhost/thien/NhomKTPM/register.php";
+		url = "http://localhost:81/web2_doan/register.php";
 		System.setProperty(chromedriver, chrome);
 		driver = new ChromeDriver();
 		driver.get(url);
 	}
 	
 	public void setWebDriverUser() {
-		url = "http://localhost/thien/NhomKTPM/user.php";
+		url = "http://localhost:81/web2_doan/user.php";
 		System.setProperty(chromedriver, chrome);
 		driver = new ChromeDriver();
 		driver.get(url);
