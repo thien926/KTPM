@@ -2,17 +2,27 @@
 <testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
+<<<<<<< HEAD
   <suite started-at="2021-05-12T22:49:15 ICT" name="Suite" finished-at="2021-05-12T22:49:34 ICT" duration-ms="19523">
     <groups>
     </groups>
     <test started-at="2021-05-12T22:49:15 ICT" name="KTPM" finished-at="2021-05-12T22:49:34 ICT" duration-ms="19523">
       <class name="com.TestShop.testNhapTimKiem">
         <test-method signature="testNhapThanhTimKiem()[pri:1, instance:com.TestShop.testNhapTimKiem@11a9e7c8]" started-at="2021-05-12T22:49:30 ICT" name="testNhapThanhTimKiem" finished-at="2021-05-12T22:49:34 ICT" duration-ms="4312" status="PASS">
+=======
+  <suite started-at="2021-05-12T22:45:47 ICT" name="Suite" finished-at="2021-05-12T22:46:00 ICT" duration-ms="12839">
+    <groups>
+    </groups>
+    <test started-at="2021-05-12T22:45:47 ICT" name="KTPM" finished-at="2021-05-12T22:46:00 ICT" duration-ms="12839">
+      <class name="com.TestShop.testNhapTimKiem">
+        <test-method signature="testNhapThanhTimKiem()[pri:1, instance:com.TestShop.testNhapTimKiem@7748410a]" started-at="2021-05-12T22:45:56 ICT" name="testNhapThanhTimKiem" finished-at="2021-05-12T22:46:00 ICT" duration-ms="3616" status="PASS">
+>>>>>>> 441dc09bc746c733f31f027bba93102d892e6516
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testNhapThanhTimKiem -->
       </class> <!-- com.TestShop.testNhapTimKiem -->
       <class name="com.TestShop.testDangNhap">
+<<<<<<< HEAD
         <test-method signature="testNhapDungTKMK()[pri:1, instance:com.TestShop.testDangNhap@3b07a0d6]" started-at="2021-05-12T22:49:15 ICT" name="testNhapDungTKMK" finished-at="2021-05-12T22:49:23 ICT" duration-ms="8298" status="PASS">
           <reporter-output>
           </reporter-output>
@@ -22,6 +32,17 @@
           </reporter-output>
         </test-method> <!-- testNhapSaiTaiKhoan -->
         <test-method signature="testNhapSaiMatKhau()[pri:3, instance:com.TestShop.testDangNhap@3b07a0d6]" started-at="2021-05-12T22:49:26 ICT" name="testNhapSaiMatKhau" finished-at="2021-05-12T22:49:30 ICT" duration-ms="3531" status="PASS">
+=======
+        <test-method signature="testNhapDungTKMK()[pri:1, instance:com.TestShop.testDangNhap@7c83dc97]" started-at="2021-05-12T22:45:47 ICT" name="testNhapDungTKMK" finished-at="2021-05-12T22:45:50 ICT" duration-ms="3470" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNhapDungTKMK -->
+        <test-method signature="testNhapSaiTaiKhoan()[pri:2, instance:com.TestShop.testDangNhap@7c83dc97]" started-at="2021-05-12T22:45:50 ICT" name="testNhapSaiTaiKhoan" finished-at="2021-05-12T22:45:53 ICT" duration-ms="2910" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNhapSaiTaiKhoan -->
+        <test-method signature="testNhapSaiMatKhau()[pri:3, instance:com.TestShop.testDangNhap@7c83dc97]" started-at="2021-05-12T22:45:53 ICT" name="testNhapSaiMatKhau" finished-at="2021-05-12T22:45:56 ICT" duration-ms="2802" status="PASS">
+>>>>>>> 441dc09bc746c733f31f027bba93102d892e6516
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testNhapSaiMatKhau -->
