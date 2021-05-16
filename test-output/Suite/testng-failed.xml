@@ -5,7 +5,7 @@
     <classes>
       <class name="com.TestShop.testDangNhap">
         <methods>
-          <include name="testNhapDungTKMK"/>
+          <include name="testNhapSaiTaiKhoan"/>
         </methods>
       </class> <!-- com.TestShop.testDangNhap -->
     </classes>

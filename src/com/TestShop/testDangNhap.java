@@ -1,5 +1,6 @@
 package com.TestShop;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -7,7 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.BasicClass.User;
 import com.WebDriver.webDriver;
+import com.WorkWithExcel.DocExcel;
+import com.WorkWithExcel.XuatExcel;
 
 public class testDangNhap {
 	public webDriver classDriver;
@@ -22,56 +26,64 @@ public class testDangNhap {
 		}
 	}
 	
-	// Đăng nhập chính xác tài khoản và mật khẩu
+	// Test đăng nhập
 	@Test(priority = 1)
-	public void testNhapDungTKMK() {
+	public void test_DangNhap() {
+		DocExcel docExcel = new DocExcel();
+		ArrayList<User> list = docExcel.DocExcelTaiKhoanDangNhap();
 		setWebDriver();
 		
-		classDriver.driver.findElement(By.id("user")).sendKeys("thien");
-		classDriver.driver.findElement(By.id("pass")).sendKeys("12345");
-		classDriver.driver.findElement(By.className("single-login-2")).click();
+		String errorUser = "", errorPass = "", actual = "", errorSweet = "", successSweet = "";
+		String temp = "";
 		
-		String actual = classDriver.driver.findElement(By.id("swal2-title")).getText();
-		classDriver.driver.findElement(By.className("swal2-actions")).click();
-		String expected = "Đăng nhập thành công!";
+		
+		for(User user : list) {
+			temp = "";
+			classDriver.driver.findElement(By.id("user")).sendKeys(user.getUser());
+			classDriver.driver.findElement(By.id("pass")).sendKeys(user.getPass());
+			classDriver.driver.findElement(By.className("single-login-2")).click();
+			
+			errorUser = classDriver.driver.findElement(By.id("note_user")).getText();
+			errorPass = classDriver.driver.findElement(By.id("note_pass")).getText();
+			
+			if(errorUser.equals("*") && errorPass.equals("*")) {
+				actual = classDriver.driver.findElement(By.id("swal2-title")).getText();
+				classDriver.driver.findElement(By.className("swal2-confirm")).click();
+				
+				errorSweet = "Tài khoản hoặc mật khẩu không đúng";
+				successSweet = "Đăng nhập thành công!";
+				
+				if(actual.equals(successSweet)) {
+					user.setResult(true);
+				}
+				else if(actual.equals(errorSweet)) {
+					user.setResult(false);
+					user.setError(errorSweet);
+				}
+			}
+			else {
+				user.setResult(false);
+				if(!errorUser.equals("*")) {
+					temp = errorUser;
+					if(!errorPass.equals("*")) {
+						temp = temp + " && " + errorPass;
+					}
+				}
+				else {
+					if(!errorPass.equals("*")) {
+						temp = errorPass;
+					}
+				}
+				user.setError(temp);
+				
+			}
+			classDriver.driver.navigate().refresh();
+		}
 		
 		classDriver.driver.close();
-		Assert.assertEquals(actual, expected);
+		
+		XuatExcel xuatExcel = new XuatExcel();
+		xuatExcel.resultDangNhap(list);
 	}
-	
-	//Đăng nhập sai tài khoản 
-	@Test(priority = 2)
-	public void testNhapSaiTaiKhoan() {
-		setWebDriver();
 		
-		classDriver.driver.findElement(By.id("user")).sendKeys("thien1");
-		classDriver.driver.findElement(By.id("pass")).sendKeys("12345");
-		classDriver.driver.findElement(By.className("single-login-2")).click();
-		
-		String actual = classDriver.driver.findElement(By.id("swal2-title")).getText();
-		classDriver.driver.findElement(By.className("swal2-actions")).click();
-		String expected = "Tài khoản hoặc mật khẩu không đúng";
-		
-		
-		classDriver.driver.close();
-		Assert.assertEquals(actual, expected);
-	}
-	
-	//Đăng nhập sai mật khẩu
-	@Test(priority = 3)
-	public void testNhapSaiMatKhau() {
-		setWebDriver();
-		
-		classDriver.driver.findElement(By.id("user")).sendKeys("thien");
-		classDriver.driver.findElement(By.id("pass")).sendKeys("123456");
-		classDriver.driver.findElement(By.className("single-login-2")).click();
-		
-		String actual = classDriver.driver.findElement(By.id("swal2-title")).getText();
-		classDriver.driver.findElement(By.className("swal2-actions")).click();
-		String expected = "Tài khoản hoặc mật khẩu không đúng";
-		
-		
-		classDriver.driver.close();
-		Assert.assertEquals(actual, expected);
-	}
 }
