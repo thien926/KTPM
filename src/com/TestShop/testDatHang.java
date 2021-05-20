@@ -87,6 +87,12 @@ public class testDatHang {
 					U.setError(temp);
 				}
 				classDriver.driver.navigate().back();
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 			switch(statusLogin) {
@@ -101,7 +107,9 @@ public class testDatHang {
 					}
 					
 					// Tiến hành các hành động chọn sản phẩm và thêm vào giỏ
+					ArrayList<Integer> listMASPRemove = new ArrayList<>();
 					ArrayList<Integer> listMASP = new ArrayList<>();
+					String txtMasp = "";
 					if(!U.getProduct().equals("")) {
 						String[] dauVa = U.getProduct().split("&");
 						System.out.println("dauVa: " + dauVa.length);
@@ -109,9 +117,18 @@ public class testDatHang {
 							String[] dauNgang = q.split("-");
 							classDriver.driver.findElement(By.xpath("//*[@id=\"show_sp\"]/div["+ dauNgang[0] +"]/div/div[2]/h4/a")).click();
 							classDriver.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+							try {
+								Thread.sleep(1500);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							classDriver.driver.findElement(By.id("soluong")).sendKeys(dauNgang[1]);
+							
+							txtMasp = classDriver.driver.findElement(By.id("data_masp")).getText();
+							listMASP.add(Integer.parseInt(txtMasp));
 							if(U.getRemove().contains(dauNgang[0])) {
-								listMASP.add(Integer.parseInt(classDriver.driver.findElement(By.id("data_masp")).getText()));
+								listMASPRemove.add(Integer.parseInt(txtMasp));
 							}
 							System.out.println("dauNgang 1: " + dauNgang[1]);
 
@@ -123,7 +140,7 @@ public class testDatHang {
 					}
 					// Tiến hành vào trang giỏ hàng
 					classDriver.driver.findElement(By.linkText("GIỎ HÀNG")).click();
-					for(Integer qq : listMASP) {
+					for(Integer qq : listMASPRemove) {
 						classDriver.driver.findElement(By.id("xoa_sp" + qq)).click();
 					}
 					
@@ -153,6 +170,13 @@ public class testDatHang {
 						}
 						else if(actual.equals(errorSweet)){
 							U.setError(errorSweet);
+							for(Integer qq : listMASP) {
+								for(Integer qqq : listMASPRemove) {
+									if(qq != qqq) {
+										classDriver.driver.findElement(By.id("xoa_sp" + qq)).click();
+									}
+								}
+							}
 							U.setResult(false);
 						}
 						else if(actual.equals(errorSweetNone)) {
@@ -161,11 +185,25 @@ public class testDatHang {
 						}
 						else if(actual.equals(errorSweetLogin)) {
 							U.setError(errorSweetLogin);
+							for(Integer qq : listMASP) {
+								for(Integer qqq : listMASPRemove) {
+									if(qq != qqq) {
+										classDriver.driver.findElement(By.id("xoa_sp" + qq)).click();
+									}
+								}
+							}
 							U.setResult(false);
 						}
 					}
+					
 					classDriver.driver.navigate().back();
 					classDriver.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+					try {
+						Thread.sleep(1500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					try {
 						// click vào loại sản phẩm
 						classDriver.driver.findElement(By.linkText("Đăng Xuất")).click();

@@ -71,21 +71,8 @@ public class DocExcel {
                         int stt = (int) cellIterator.next().getNumericCellValue();
 //                        String user = cellIterator.next().getStringCellValue();
                         
-                        String user = "";
-                        cell = cellIterator.next();
-                        try {
-                        	user = cell.getStringCellValue();
-                        } catch(Exception e) {
-                        	user = Integer.toString((int)cell.getNumericCellValue());
-                        }
-                        
-                        String pass = "";
-                        cell = cellIterator.next();
-                        try {
-                        	pass = cell.getStringCellValue();
-                        } catch(Exception e) {
-                        	pass = Integer.toString((int)cell.getNumericCellValue());
-                        }
+                        String user = convert_Num_Str(cellIterator.next());
+                        String pass = convert_Num_Str(cellIterator.next());
                         
                         User U = new User(user, pass);
                         list.add(U);
@@ -207,6 +194,57 @@ public class DocExcel {
                         remove = convert_Num_Str(cellIterator.next());
                         
                         ClassDatHang U = new ClassDatHang(user, pass, typeProduct, product, typeAddress, address, remove);
+                        list.add(U);
+                    }
+            	}
+            }
+            
+            
+        }
+        catch (Exception e){
+        	e.printStackTrace();
+        } finally {
+            try{
+                if (inpFile != null) {
+                    inpFile.close();
+                }
+            } catch (Exception ex){
+            	ex.printStackTrace();
+            }
+        }
+        return list;
+    }
+	
+	public ArrayList<User> DocExcelTaiKhoanDangNhapAdmin(){
+        String url = "NhapData/testDangNhapAdmin.xls";
+        ArrayList<User> list = new ArrayList<User>();
+        
+        FileInputStream inpFile = null;
+        try{
+            inpFile = new FileInputStream(new File(url));
+            
+            HSSFWorkbook workbook = new HSSFWorkbook(inpFile);
+            HSSFSheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
+            
+            int index = -1;
+            while(rowIterator.hasNext()){
+            	++index;
+            	Row row = rowIterator.next();
+            	// Nếu số dòng <= 2 thì skip
+            	if(index >= 2) {
+            		
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    Cell cell;
+                    
+                    while(cellIterator.hasNext()){
+                        int stt = (int) cellIterator.next().getNumericCellValue();
+//                        String user = cellIterator.next().getStringCellValue();
+                        
+                        String user = convert_Num_Str(cellIterator.next());
+                        String pass = convert_Num_Str(cellIterator.next());
+                        
+                        User U = new User(user, pass);
                         list.add(U);
                     }
             	}

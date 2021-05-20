@@ -326,6 +326,7 @@ public class XuatExcel {
             
             cell = (HSSFCell)row.createCell(3, CellType.STRING);
             cell.setCellValue("Type Product");
+            cell.setCellStyle(style);
             
             cell = (HSSFCell)row.createCell(4, CellType.STRING);
             cell.setCellValue("Product");
@@ -398,6 +399,96 @@ public class XuatExcel {
             }
             
             for(int i = 0; i < 10; ++i){
+                sheet.autoSizeColumn(i);
+            }
+            
+            File file = new File(url);
+            file.getParentFile().mkdirs();
+            outFile = new FileOutputStream(file);
+            workbook.write(outFile);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(outFile != null){
+                    outFile.close();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+ // Xuất file Excel resultDangNhapAdmin
+    public void resultDangNhapAdmin(ArrayList<User> list){
+        String url = "Result/resultDangNhapAdmin.xls";
+        
+        FileOutputStream outFile = null;
+        HSSFCell cell;
+        try {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet sheet = workbook.createSheet("testDangNhapAdmin");
+            HSSFCellStyle style = getSampleStyle(workbook);
+            HSSFCellStyle styletieude = getStyleTieuDe(workbook);
+            
+            
+            int rownum = 0, index = 0;
+            
+            Row row = sheet.createRow(rownum);
+            cell = (HSSFCell)row.createCell(0, CellType.STRING);
+            cell.setCellValue("Test Login Admin");
+            cell.setCellStyle(styletieude);
+            
+            ++rownum;
+            row = sheet.createRow(rownum);
+            cell = (HSSFCell)row.createCell(0, CellType.STRING);
+            cell.setCellValue("Test Case");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(1, CellType.STRING);
+            cell.setCellValue("User");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(2, CellType.STRING);
+            cell.setCellValue("Password");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(3, CellType.STRING);
+            cell.setCellValue("Error");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(4, CellType.STRING);
+            cell.setCellValue("Result");
+            cell.setCellStyle(style);
+            
+            for(User u: list){
+                ++rownum;
+                ++index;
+                
+                row = sheet.createRow(rownum);
+                cell = (HSSFCell) row.createCell(0, CellType.NUMERIC);
+                cell.setCellValue(index);
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(1, CellType.STRING);
+                cell.setCellValue(u.getUser());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(2, CellType.STRING);
+                cell.setCellValue(u.getPass());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(3, CellType.STRING);
+                cell.setCellValue(u.getError());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(4, CellType.BOOLEAN);
+                cell.setCellValue(u.getResult());
+                cell.setCellStyle(style);
+            }
+            
+            for(int i = 0; i < 5; ++i){
                 sheet.autoSizeColumn(i);
             }
             

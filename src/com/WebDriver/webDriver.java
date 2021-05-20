@@ -43,6 +43,13 @@ public class webDriver {
 		driver.get(url);
 	}
 	
+	public void setWebDriverLoginAdmin() {
+		url = "http://localhost/thien/NhomKTPM/manager/";
+		System.setProperty(chromedriver, chrome);
+		driver = new ChromeDriver();
+		driver.get(url);
+	}
+	
 	public void close() {
 		driver.close();
 	}
