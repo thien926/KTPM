@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-05-20T22:06:52 ICT" name="Default suite" finished-at="2021-05-20T22:07:01 ICT" duration-ms="8686">
+  <suite started-at="2021-05-20T23:21:27 ICT" name="Default suite" finished-at="2021-05-20T23:21:42 ICT" duration-ms="15083">
     <groups>
     </groups>
-    <test started-at="2021-05-20T22:06:52 ICT" name="Default test" finished-at="2021-05-20T22:07:01 ICT" duration-ms="8686">
-      <class name="com.TestShop.testDangNhap">
-        <test-method signature="test_DangNhap()[pri:1, instance:com.TestShop.testDangNhap@32910148]" started-at="2021-05-20T22:06:52 ICT" name="test_DangNhap" finished-at="2021-05-20T22:07:01 ICT" duration-ms="8654" status="PASS">
+    <test started-at="2021-05-20T23:21:27 ICT" name="Default test" finished-at="2021-05-20T23:21:42 ICT" duration-ms="15083">
+      <class name="com.TestAdmin.testProductType">
+        <test-method signature="testSuaLoaiSanPham()[pri:2, instance:com.TestAdmin.testProductType@2b4bac49]" started-at="2021-05-20T23:21:27 ICT" name="testSuaLoaiSanPham" finished-at="2021-05-20T23:21:42 ICT" duration-ms="15050" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- test_DangNhap -->
-      </class> <!-- com.TestShop.testDangNhap -->
+        </test-method> <!-- testSuaLoaiSanPham -->
+      </class> <!-- com.TestAdmin.testProductType -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

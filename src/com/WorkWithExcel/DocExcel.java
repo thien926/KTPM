@@ -312,6 +312,54 @@ public class DocExcel {
         return list;
     }
 	
+	// DOc file testSuaLoaiSanPham
+	public ArrayList<ProductType> DocExcelSuaLoaiSanPham(){
+        String url = "NhapData/testSuaLoaiSanPham.xls";
+        ArrayList<ProductType> list = new ArrayList<ProductType>();
+        
+        FileInputStream inpFile = null;
+        try{
+            inpFile = new FileInputStream(new File(url));
+            
+            HSSFWorkbook workbook = new HSSFWorkbook(inpFile);
+            HSSFSheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
+            
+            int index = -1;
+            while(rowIterator.hasNext()){
+            	++index;
+            	Row row = rowIterator.next();
+            	// Nếu số dòng <= 2 thì skip
+            	if(index >= 2) {
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    while(cellIterator.hasNext()){
+                        int stt = (int) cellIterator.next().getNumericCellValue();
+                        int id = (int) cellIterator.next().getNumericCellValue();
+                        String name = convert_Num_Str(cellIterator.next());
+                        String describe = convert_Num_Str(cellIterator.next());
+                        
+                        ProductType U = new ProductType(id, name, describe);
+                        list.add(U);
+                    }
+            	}
+            }
+            
+            
+        }
+        catch (Exception e){
+        	e.printStackTrace();
+        } finally {
+            try{
+                if (inpFile != null) {
+                    inpFile.close();
+                }
+            } catch (Exception ex){
+            	ex.printStackTrace();
+            }
+        }
+        return list;
+    }
+	
 	public String convert_Num_Str(Cell cell) {
 		String text = "";
 		try {

@@ -23,6 +23,14 @@ public class ProductType {
 		this.id = -1;
 	}
 	
+	public ProductType(int id, String name, String describe) {
+		this.name = name;
+		this.describe = describe;
+		this.error = "";
+		this.result = false;
+		this.id = id;
+	}
+	
 	public void setname(String name) {
 		this.name = name;
 	}
