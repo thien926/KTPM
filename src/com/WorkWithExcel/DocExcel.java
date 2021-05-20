@@ -19,6 +19,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 import com.BasicClass.ClassDatHang;
 import com.BasicClass.NewUser;
+import com.BasicClass.ProductType;
 import com.BasicClass.User;
 
 public class DocExcel {
@@ -239,12 +240,57 @@ public class DocExcel {
                     
                     while(cellIterator.hasNext()){
                         int stt = (int) cellIterator.next().getNumericCellValue();
-//                        String user = cellIterator.next().getStringCellValue();
-                        
                         String user = convert_Num_Str(cellIterator.next());
                         String pass = convert_Num_Str(cellIterator.next());
                         
                         User U = new User(user, pass);
+                        list.add(U);
+                    }
+            	}
+            }
+            
+            
+        }
+        catch (Exception e){
+        	e.printStackTrace();
+        } finally {
+            try{
+                if (inpFile != null) {
+                    inpFile.close();
+                }
+            } catch (Exception ex){
+            	ex.printStackTrace();
+            }
+        }
+        return list;
+    }
+	
+	// DOc file testThemLoaiSanPham
+	public ArrayList<ProductType> DocExcelThemLoaiSanPham(){
+        String url = "NhapData/testThemLoaiSanPham.xls";
+        ArrayList<ProductType> list = new ArrayList<ProductType>();
+        
+        FileInputStream inpFile = null;
+        try{
+            inpFile = new FileInputStream(new File(url));
+            
+            HSSFWorkbook workbook = new HSSFWorkbook(inpFile);
+            HSSFSheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
+            
+            int index = -1;
+            while(rowIterator.hasNext()){
+            	++index;
+            	Row row = rowIterator.next();
+            	// Nếu số dòng <= 2 thì skip
+            	if(index >= 2) {
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    while(cellIterator.hasNext()){
+                        int stt = (int) cellIterator.next().getNumericCellValue();
+                        String name = convert_Num_Str(cellIterator.next());
+                        String describe = convert_Num_Str(cellIterator.next());
+                        
+                        ProductType U = new ProductType(name, describe);
                         list.add(U);
                     }
             	}

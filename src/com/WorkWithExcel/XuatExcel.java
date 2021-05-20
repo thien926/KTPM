@@ -16,6 +16,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 import com.BasicClass.ClassDatHang;
 import com.BasicClass.NewUser;
+import com.BasicClass.ProductType;
 import com.BasicClass.User;
 
 public class XuatExcel {
@@ -161,7 +162,7 @@ public class XuatExcel {
             
             Row row = sheet.createRow(rownum);
             cell = (HSSFCell)row.createCell(0, CellType.STRING);
-            cell.setCellValue("Test Register");
+            cell.setCellValue("Result Register");
             cell.setCellStyle(styletieude);
             
             ++rownum;
@@ -489,6 +490,104 @@ public class XuatExcel {
             }
             
             for(int i = 0; i < 5; ++i){
+                sheet.autoSizeColumn(i);
+            }
+            
+            File file = new File(url);
+            file.getParentFile().mkdirs();
+            outFile = new FileOutputStream(file);
+            workbook.write(outFile);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(outFile != null){
+                    outFile.close();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+ // Xuất file Excel resultThemLoaiSanPham
+    public void resultThemLoaiSanPham(ArrayList<ProductType> list){
+        String url = "Result/resultThemLoaiSanPham.xls";
+        
+        FileOutputStream outFile = null;
+        HSSFCell cell;
+        try {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet sheet = workbook.createSheet("resultThemLoaiSanPham");
+            HSSFCellStyle style = getSampleStyle(workbook);
+            HSSFCellStyle styletieude = getStyleTieuDe(workbook);
+            
+            
+            int rownum = 0, index = 0;
+            
+            Row row = sheet.createRow(rownum);
+            cell = (HSSFCell)row.createCell(0, CellType.STRING);
+            cell.setCellValue("Result Add Product Type");
+            cell.setCellStyle(styletieude);
+            
+            ++rownum;
+            row = sheet.createRow(rownum);
+            cell = (HSSFCell)row.createCell(0, CellType.STRING);
+            cell.setCellValue("Test Case");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(1, CellType.STRING);
+            cell.setCellValue("Id");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(2, CellType.STRING);
+            cell.setCellValue("Name");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(3, CellType.STRING);
+            cell.setCellValue("Describe");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(4, CellType.STRING);
+            cell.setCellValue("Error");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(5, CellType.STRING);
+            cell.setCellValue("Result");
+            cell.setCellStyle(style);
+            
+            for(ProductType u: list){
+                ++rownum;
+                ++index;
+                
+                row = sheet.createRow(rownum);
+                cell = (HSSFCell) row.createCell(0, CellType.NUMERIC);
+                cell.setCellValue(index);
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(1, CellType.NUMERIC);
+                cell.setCellValue(u.getId());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(2, CellType.STRING);
+                cell.setCellValue(u.getname());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(3, CellType.STRING);
+                cell.setCellValue(u.getname());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(4, CellType.STRING);
+                cell.setCellValue(u.getError());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(5, CellType.BOOLEAN);
+                cell.setCellValue(u.getResult());
+                cell.setCellStyle(style);
+            }
+            
+            for(int i = 0; i < 6; ++i){
                 sheet.autoSizeColumn(i);
             }
             

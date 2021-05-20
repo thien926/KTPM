@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-05-20T17:27:34 ICT" name="Default suite" finished-at="2021-05-20T17:27:52 ICT" duration-ms="17412">
+  <suite started-at="2021-05-20T22:06:52 ICT" name="Default suite" finished-at="2021-05-20T22:07:01 ICT" duration-ms="8686">
     <groups>
     </groups>
-    <test started-at="2021-05-20T17:27:34 ICT" name="Default test" finished-at="2021-05-20T17:27:52 ICT" duration-ms="17412">
-      <class name="com.TestAdmin.testDangNhapAdmin">
-        <test-method signature="test_DangNhapAdmin()[pri:1, instance:com.TestAdmin.testDangNhapAdmin@3f56875e]" started-at="2021-05-20T17:27:34 ICT" name="test_DangNhapAdmin" finished-at="2021-05-20T17:27:52 ICT" duration-ms="17378" status="PASS">
+    <test started-at="2021-05-20T22:06:52 ICT" name="Default test" finished-at="2021-05-20T22:07:01 ICT" duration-ms="8686">
+      <class name="com.TestShop.testDangNhap">
+        <test-method signature="test_DangNhap()[pri:1, instance:com.TestShop.testDangNhap@32910148]" started-at="2021-05-20T22:06:52 ICT" name="test_DangNhap" finished-at="2021-05-20T22:07:01 ICT" duration-ms="8654" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- test_DangNhapAdmin -->
-      </class> <!-- com.TestAdmin.testDangNhapAdmin -->
+        </test-method> <!-- test_DangNhap -->
+      </class> <!-- com.TestShop.testDangNhap -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
