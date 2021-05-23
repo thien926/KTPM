@@ -33,51 +33,51 @@ public class testProductType {
 		waitWeb(1000);
 	}
 	
-//	@Test(priority = 1)
-//	public void testThemLoaiSanPham() {
-//		DocExcel docExcel = new DocExcel();
-//		ArrayList<ProductType> list = docExcel.DocExcelThemLoaiSanPham();
-//		setWebDriver();
-//		
-//		DangNhapAdmin();
-//		
-//		classDriver.driver.findElement(By.id("menuLoaiSanPham")).click();
-//		
-//		String error = "", actual = "";
-//		
-//		
-//		for(ProductType p : list) {
-//			classDriver.driver.findElement(By.id("btnThemLoaiSanPham")).click();
-////			System.out.println("Mã loại sản phẩm: " + classDriver.driver.findElement(By.id("maloaiSua")).getAttribute("value"));
-//			p.setId(Integer.parseInt(classDriver.driver.findElement(By.id("maloaiSua")).getAttribute("value")));
-//			classDriver.driver.findElement(By.id("tenloaiSua")).clear();
-//			classDriver.driver.findElement(By.id("motaSua")).clear();
-//			classDriver.driver.findElement(By.id("tenloaiSua")).sendKeys(p.getname());
-//			classDriver.driver.findElement(By.id("motaSua")).sendKeys(p.getdescribe());
-//			classDriver.driver.findElement(By.id("buttonkhungLoaiSanPham")).click();
-//			waitWeb(500);
-//			classDriver.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//			actual = classDriver.driver.findElement(By.id("swal2-title")).getText();
-//			if(actual.equals("Thêm thành công")) {
-//				p.setResult(true);
-//				classDriver.driver.findElement(By.className("swal2-confirm")).click();
-//			}
-//			else {
-//				error = classDriver.driver.findElement(By.id("swal2-content")).getText();
-//				p.setError(error);
-//				p.setResult(false);
-//				
-//				classDriver.driver.findElement(By.className("swal2-confirm")).click();
-//				classDriver.driver.findElement(By.id("closekhungLoaiSanPham")).click();
-//			}
-//			waitWeb(1000);
-//		}
-//		
-//		classDriver.driver.close();
-//		
-//		XuatExcel xuatExcel = new XuatExcel();
-//		xuatExcel.resultThemLoaiSanPham(list);
-//	}
+	@Test(priority = 1)
+	public void testThemLoaiSanPham() {
+		DocExcel docExcel = new DocExcel();
+		ArrayList<ProductType> list = docExcel.DocExcelThemLoaiSanPham();
+		setWebDriver();
+		
+		DangNhapAdmin();
+		
+		classDriver.driver.findElement(By.id("menuLoaiSanPham")).click();
+		
+		String error = "", actual = "";
+		
+		
+		for(ProductType p : list) {
+			classDriver.driver.findElement(By.id("btnThemLoaiSanPham")).click();
+//			System.out.println("Mã loại sản phẩm: " + classDriver.driver.findElement(By.id("maloaiSua")).getAttribute("value"));
+			p.setId(Integer.parseInt(classDriver.driver.findElement(By.id("maloaiSua")).getAttribute("value")));
+			classDriver.driver.findElement(By.id("tenloaiSua")).clear();
+			classDriver.driver.findElement(By.id("motaSua")).clear();
+			classDriver.driver.findElement(By.id("tenloaiSua")).sendKeys(p.getname());
+			classDriver.driver.findElement(By.id("motaSua")).sendKeys(p.getdescribe());
+			classDriver.driver.findElement(By.id("buttonkhungLoaiSanPham")).click();
+			waitWeb(500);
+			classDriver.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			actual = classDriver.driver.findElement(By.id("swal2-title")).getText();
+			if(actual.equals("Thêm thành công")) {
+				p.setResult(true);
+				classDriver.driver.findElement(By.className("swal2-confirm")).click();
+			}
+			else {
+				error = classDriver.driver.findElement(By.id("swal2-content")).getText();
+				p.setError(error);
+				p.setResult(false);
+				
+				classDriver.driver.findElement(By.className("swal2-confirm")).click();
+				classDriver.driver.findElement(By.id("closekhungLoaiSanPham")).click();
+			}
+			waitWeb(1000);
+		}
+		
+		classDriver.driver.close();
+		
+		XuatExcel xuatExcel = new XuatExcel();
+		xuatExcel.resultThemLoaiSanPham(list);
+	}
 	
 	@Test(priority = 2)
 	public void testSuaLoaiSanPham() {

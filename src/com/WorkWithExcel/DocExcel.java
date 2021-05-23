@@ -19,6 +19,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 import com.BasicClass.ClassDatHang;
 import com.BasicClass.NewUser;
+import com.BasicClass.Product;
 import com.BasicClass.ProductType;
 import com.BasicClass.User;
 
@@ -339,6 +340,117 @@ public class DocExcel {
                         String describe = convert_Num_Str(cellIterator.next());
                         
                         ProductType U = new ProductType(id, name, describe);
+                        list.add(U);
+                    }
+            	}
+            }
+            
+            
+        }
+        catch (Exception e){
+        	e.printStackTrace();
+        } finally {
+            try{
+                if (inpFile != null) {
+                    inpFile.close();
+                }
+            } catch (Exception ex){
+            	ex.printStackTrace();
+            }
+        }
+        return list;
+    }
+	
+	// DOc file testThemSanPham
+	public ArrayList<Product> DocExcelThemSanPham(){
+        String url = "NhapData/testThemSanPham.xls";
+        ArrayList<Product> list = new ArrayList<Product>();
+        
+        FileInputStream inpFile = null;
+        try{
+            inpFile = new FileInputStream(new File(url));
+            
+            HSSFWorkbook workbook = new HSSFWorkbook(inpFile);
+            HSSFSheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
+            
+            int index = -1;
+            while(rowIterator.hasNext()){
+            	++index;
+            	Row row = rowIterator.next();
+            	// Nếu số dòng <= 2 thì skip
+            	if(index >= 2) {
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    while(cellIterator.hasNext()){
+                        int stt = (int) cellIterator.next().getNumericCellValue();
+                        String name = convert_Num_Str(cellIterator.next());
+                        String type = convert_Num_Str(cellIterator.next());
+                        String author = convert_Num_Str(cellIterator.next());
+                        String nxb = convert_Num_Str(cellIterator.next());
+                        String img = convert_Num_Str(cellIterator.next());
+                        int amount = (int)cellIterator.next().getNumericCellValue();
+                        long price = (long)cellIterator.next().getNumericCellValue();
+                        String sail = convert_Num_Str(cellIterator.next());
+                        String descript = convert_Num_Str(cellIterator.next());
+                        String status = convert_Num_Str(cellIterator.next());
+                        
+                        Product U = new Product(name, type, author, nxb, img, amount, price, sail, descript, status);
+                        list.add(U);
+                    }
+            	}
+            }
+            
+            
+        }
+        catch (Exception e){
+        	e.printStackTrace();
+        } finally {
+            try{
+                if (inpFile != null) {
+                    inpFile.close();
+                }
+            } catch (Exception ex){
+            	ex.printStackTrace();
+            }
+        }
+        return list;
+    }
+	
+	// DOc file testSuaSanPham
+	public ArrayList<Product> DocExcelSuaSanPham(){
+        String url = "NhapData/testSuaSanPham.xls";
+        ArrayList<Product> list = new ArrayList<Product>();
+        
+        FileInputStream inpFile = null;
+        try{
+            inpFile = new FileInputStream(new File(url));
+            
+            HSSFWorkbook workbook = new HSSFWorkbook(inpFile);
+            HSSFSheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
+            
+            int index = -1;
+            while(rowIterator.hasNext()){
+            	++index;
+            	Row row = rowIterator.next();
+            	// Nếu số dòng <= 2 thì skip
+            	if(index >= 2) {
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    while(cellIterator.hasNext()){
+                        int stt = (int) cellIterator.next().getNumericCellValue();
+                        int id = (int) cellIterator.next().getNumericCellValue();
+                        String name = convert_Num_Str(cellIterator.next());
+                        String type = convert_Num_Str(cellIterator.next());
+                        String author = convert_Num_Str(cellIterator.next());
+                        String nxb = convert_Num_Str(cellIterator.next());
+                        String img = convert_Num_Str(cellIterator.next());
+                        int amount = (int)cellIterator.next().getNumericCellValue();
+                        long price = (long)cellIterator.next().getNumericCellValue();
+                        String sail = convert_Num_Str(cellIterator.next());
+                        String descript = convert_Num_Str(cellIterator.next());
+                        String status = convert_Num_Str(cellIterator.next());
+                        
+                        Product U = new Product(id, name, type, author, nxb, img, amount, price, sail, descript, status);
                         list.add(U);
                     }
             	}

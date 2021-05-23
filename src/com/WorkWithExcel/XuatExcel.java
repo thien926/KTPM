@@ -16,6 +16,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 import com.BasicClass.ClassDatHang;
 import com.BasicClass.NewUser;
+import com.BasicClass.Product;
 import com.BasicClass.ProductType;
 import com.BasicClass.User;
 
@@ -686,6 +687,329 @@ public class XuatExcel {
             }
             
             for(int i = 0; i < 6; ++i){
+                sheet.autoSizeColumn(i);
+            }
+            
+            File file = new File(url);
+            file.getParentFile().mkdirs();
+            outFile = new FileOutputStream(file);
+            workbook.write(outFile);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(outFile != null){
+                    outFile.close();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+ // Xuất file Excel resultThemSanPham
+    public void resultThemSanPham(ArrayList<Product> list){
+        String url = "Result/resultThemSanPham.xls";
+        
+        FileOutputStream outFile = null;
+        HSSFCell cell;
+        try {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet sheet = workbook.createSheet("resultThemSanPham");
+            HSSFCellStyle style = getSampleStyle(workbook);
+            HSSFCellStyle styletieude = getStyleTieuDe(workbook);
+            
+            
+            int rownum = 0, index = 0;
+            
+            Row row = sheet.createRow(rownum);
+            cell = (HSSFCell)row.createCell(0, CellType.STRING);
+            cell.setCellValue("Result Add Product");
+            cell.setCellStyle(styletieude);
+            
+            ++rownum;
+            row = sheet.createRow(rownum);
+            cell = (HSSFCell)row.createCell(0, CellType.STRING);
+            cell.setCellValue("Test Case");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(1, CellType.STRING);
+            cell.setCellValue("Id");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(2, CellType.STRING);
+            cell.setCellValue("Name");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(3, CellType.STRING);
+            cell.setCellValue("Type");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(4, CellType.STRING);
+            cell.setCellValue("Author");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(5, CellType.STRING);
+            cell.setCellValue("NXB");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(6, CellType.STRING);
+            cell.setCellValue("Img");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(7, CellType.STRING);
+            cell.setCellValue("Amount");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(8, CellType.STRING);
+            cell.setCellValue("Price");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(9, CellType.STRING);
+            cell.setCellValue("Sail");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(10, CellType.STRING);
+            cell.setCellValue("Decription");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(11, CellType.STRING);
+            cell.setCellValue("Status");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(12, CellType.STRING);
+            cell.setCellValue("Error");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(13, CellType.STRING);
+            cell.setCellValue("Result");
+            cell.setCellStyle(style);
+            
+            for(Product u: list){
+                ++rownum;
+                ++index;
+                
+                row = sheet.createRow(rownum);
+                cell = (HSSFCell) row.createCell(0, CellType.NUMERIC);
+                cell.setCellValue(index);
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(1, CellType.NUMERIC);
+                cell.setCellValue(u.getProduct_id());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(2, CellType.STRING);
+                cell.setCellValue(u.getName());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(3, CellType.STRING);
+                cell.setCellValue(u.getProduct_type());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(4, CellType.STRING);
+                cell.setCellValue(u.getAuthor());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(5, CellType.STRING);
+                cell.setCellValue(u.getNxb());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(6, CellType.STRING);
+                cell.setCellValue(u.getImg());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(7, CellType.NUMERIC);
+                cell.setCellValue(u.getAmount());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(8, CellType.NUMERIC);
+                cell.setCellValue(u.getPrice());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(9, CellType.STRING);
+                cell.setCellValue(u.getSail());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(10, CellType.STRING);
+                cell.setCellValue(u.getDescript());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(11, CellType.STRING);
+                cell.setCellValue(u.getStatus());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(12, CellType.STRING);
+                cell.setCellValue(u.getError());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(13, CellType.BOOLEAN);
+                cell.setCellValue(u.isResult());
+                cell.setCellStyle(style);
+            }
+            
+            for(int i = 0; i < 14; ++i){
+                sheet.autoSizeColumn(i);
+            }
+            
+            File file = new File(url);
+            file.getParentFile().mkdirs();
+            outFile = new FileOutputStream(file);
+            workbook.write(outFile);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(outFile != null){
+                    outFile.close();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+ // Xuất file Excel resultSuaSanPham
+    public void resultSuaSanPham(ArrayList<Product> list){
+        String url = "Result/resultSuaSanPham.xls";
+        
+        FileOutputStream outFile = null;
+        HSSFCell cell;
+        try {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet sheet = workbook.createSheet("resultSuaSanPham");
+            HSSFCellStyle style = getSampleStyle(workbook);
+            HSSFCellStyle styletieude = getStyleTieuDe(workbook);
+            
+            
+            int rownum = 0, index = 0;
+            
+            Row row = sheet.createRow(rownum);
+            cell = (HSSFCell)row.createCell(0, CellType.STRING);
+            cell.setCellValue("Result Repair Product");
+            cell.setCellStyle(styletieude);
+            
+            ++rownum;
+            row = sheet.createRow(rownum);
+            cell = (HSSFCell)row.createCell(0, CellType.STRING);
+            cell.setCellValue("Test Case");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(1, CellType.STRING);
+            cell.setCellValue("Id");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(2, CellType.STRING);
+            cell.setCellValue("Name");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(3, CellType.STRING);
+            cell.setCellValue("Type");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(4, CellType.STRING);
+            cell.setCellValue("Author");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(5, CellType.STRING);
+            cell.setCellValue("NXB");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(6, CellType.STRING);
+            cell.setCellValue("Img");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(7, CellType.STRING);
+            cell.setCellValue("Amount");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(8, CellType.STRING);
+            cell.setCellValue("Price");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(9, CellType.STRING);
+            cell.setCellValue("Sail");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(10, CellType.STRING);
+            cell.setCellValue("Decription");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(11, CellType.STRING);
+            cell.setCellValue("Status");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(12, CellType.STRING);
+            cell.setCellValue("Error");
+            cell.setCellStyle(style);
+            
+            cell = (HSSFCell)row.createCell(13, CellType.STRING);
+            cell.setCellValue("Result");
+            cell.setCellStyle(style);
+            
+            for(Product u: list){
+                ++rownum;
+                ++index;
+                
+                row = sheet.createRow(rownum);
+                cell = (HSSFCell) row.createCell(0, CellType.NUMERIC);
+                cell.setCellValue(index);
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(1, CellType.NUMERIC);
+                cell.setCellValue(u.getProduct_id());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(2, CellType.STRING);
+                cell.setCellValue(u.getName());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(3, CellType.STRING);
+                cell.setCellValue(u.getProduct_type());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(4, CellType.STRING);
+                cell.setCellValue(u.getAuthor());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(5, CellType.STRING);
+                cell.setCellValue(u.getNxb());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(6, CellType.STRING);
+                cell.setCellValue(u.getImg());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(7, CellType.NUMERIC);
+                cell.setCellValue(u.getAmount());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(8, CellType.NUMERIC);
+                cell.setCellValue(u.getPrice());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(9, CellType.STRING);
+                cell.setCellValue(u.getSail());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(10, CellType.STRING);
+                cell.setCellValue(u.getDescript());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(11, CellType.STRING);
+                cell.setCellValue(u.getStatus());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(12, CellType.STRING);
+                cell.setCellValue(u.getError());
+                cell.setCellStyle(style);
+                
+                cell = (HSSFCell) row.createCell(13, CellType.BOOLEAN);
+                cell.setCellValue(u.isResult());
+                cell.setCellStyle(style);
+            }
+            
+            for(int i = 0; i < 14; ++i){
                 sheet.autoSizeColumn(i);
             }
             

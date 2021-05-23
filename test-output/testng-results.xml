@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-05-20T23:21:27 ICT" name="Default suite" finished-at="2021-05-20T23:21:42 ICT" duration-ms="15083">
+  <suite started-at="2021-05-23T20:56:25 ICT" name="Default suite" finished-at="2021-05-23T20:57:04 ICT" duration-ms="38324">
     <groups>
     </groups>
-    <test started-at="2021-05-20T23:21:27 ICT" name="Default test" finished-at="2021-05-20T23:21:42 ICT" duration-ms="15083">
-      <class name="com.TestAdmin.testProductType">
-        <test-method signature="testSuaLoaiSanPham()[pri:2, instance:com.TestAdmin.testProductType@2b4bac49]" started-at="2021-05-20T23:21:27 ICT" name="testSuaLoaiSanPham" finished-at="2021-05-20T23:21:42 ICT" duration-ms="15050" status="PASS">
+    <test started-at="2021-05-23T20:56:25 ICT" name="Default test" finished-at="2021-05-23T20:57:04 ICT" duration-ms="38324">
+      <class name="com.TestAdmin.testSanPham">
+        <test-method signature="testRepairSanPham()[pri:2, instance:com.TestAdmin.testSanPham@2b4bac49]" started-at="2021-05-23T20:56:25 ICT" name="testRepairSanPham" finished-at="2021-05-23T20:57:04 ICT" duration-ms="38294" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testSuaLoaiSanPham -->
-      </class> <!-- com.TestAdmin.testProductType -->
+        </test-method> <!-- testRepairSanPham -->
+      </class> <!-- com.TestAdmin.testSanPham -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
